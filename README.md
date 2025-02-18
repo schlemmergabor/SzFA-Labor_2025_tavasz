@@ -1,0 +1,1 @@
+# SzFA-Labor_2025_tavasz
