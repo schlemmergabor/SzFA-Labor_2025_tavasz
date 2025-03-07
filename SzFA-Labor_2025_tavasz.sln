@@ -5,7 +5,9 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L01-OOP", "L01-OOP\L01-OOP.csproj", "{27FE3A43-7DA8-4731-BE34-E254C026F970}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L02-Oroklodes", "L02-Oroklodes\L02-Oroklodes.csproj", "{1897BAA0-C27F-4177-BF23-DCEAB3911826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L02-Oroklodes", "L02-Oroklodes\L02-Oroklodes.csproj", "{1897BAA0-C27F-4177-BF23-DCEAB3911826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L03-MemeCat", "L03-MemeCat\L03-MemeCat.csproj", "{EF1E9112-70B6-456C-B6E5-38C2F73C926F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1897BAA0-C27F-4177-BF23-DCEAB3911826}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1897BAA0-C27F-4177-BF23-DCEAB3911826}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1897BAA0-C27F-4177-BF23-DCEAB3911826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF1E9112-70B6-456C-B6E5-38C2F73C926F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1E9112-70B6-456C-B6E5-38C2F73C926F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1E9112-70B6-456C-B6E5-38C2F73C926F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1E9112-70B6-456C-B6E5-38C2F73C926F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
