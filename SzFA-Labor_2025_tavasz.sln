@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MintaZH01", "MintaZH01\Mint
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MintaZH01_Tests", "MintaZH01_Tests\MintaZH01_Tests.csproj", "{36CCBEF9-718D-4C31-90FF-0A32E52EE50E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L08-TrainingCosts", "L08-TrainingCosts\L08-TrainingCosts.csproj", "{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L08-TrainingCosts_Tests", "L08-TrainingCosts_Tests\L08-TrainingCosts_Tests.csproj", "{57257CF3-15DE-4A8F-A70D-F06771039B71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{36CCBEF9-718D-4C31-90FF-0A32E52EE50E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36CCBEF9-718D-4C31-90FF-0A32E52EE50E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36CCBEF9-718D-4C31-90FF-0A32E52EE50E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
