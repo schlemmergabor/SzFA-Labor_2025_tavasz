@@ -38,5 +38,4 @@ namespace L08_TrainingCosts
             return result;
         }
     }
-
 }
