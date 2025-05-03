@@ -28,6 +28,13 @@ namespace L08_TrainingCosts_Tests
                 Assert.That(yearlyCosts.Costs, Is.Not.Null);
             }
         }
+        [Test]
+        public void MonthlyMaxCostTest()
+        {
+            YearlyCosts yc = YearlyCosts.LoadFrom(@"..\..\..\csv_files");
+
+            Assert.That(yc.MonthlyMaxCost(), Is.EqualTo(0));
+        }
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace L08_TrainingCosts
 {
@@ -258,13 +259,129 @@ namespace L08_TrainingCosts
                 if (pre(this.TrainingCosts[i]) && this.TrainingCosts[i].Cost > maxValue)
                 {
                     // legnagyobb érték és index frissítése
-                    maxValue=this.TrainingCosts[i].Cost;
+                    maxValue = this.TrainingCosts[i].Cost;
                     maxIndex = i;
-                }   
+                }
             }
 
             return this.TrainingCosts[maxIndex];
         }
-    }
 
+        // 1.11. Költségek újraszámolás, kerékpár, futás / 2 ->
+        // így melyik volt a legnagyobb költés
+        public TrainingCost BiggestCostAlternative()
+        {
+            // ha nem volt a hónapban költés -> Exception
+            if (this.TrainingCosts.Length == 0) throw new ZeroLengthArrayException();
+
+            int maxIndex = 1 - 1; // -1 az indexelés miatt
+            int n = this.TrainingCosts.Length - 1; // -1 az indexelés miatt 
+
+            // maxindex elem költség számítása
+            // ha kerékpár vagy futás, akkor fele, amúgy az eredeti érték
+            // Ternary (Elvis) operatorral
+            int maxCost = this.TrainingCosts[0].Type == TrainingType.Cycling ||
+                this.TrainingCosts[0].Type == TrainingType.Running
+                ? this.TrainingCosts[0].Cost / 2
+                : this.TrainingCosts[0].Cost;
+
+            for (int i = 2 - 1; i <= n; i++)
+            {
+                // i. elem költsége
+                int itemCost = this.TrainingCosts[i].Cost;
+
+                // ha futás vagy kerékpározás, akkor osztunk 2-vel
+                if (this.TrainingCosts[i].Type == TrainingType.Cycling ||
+                    this.TrainingCosts[i].Type == TrainingType.Running)
+                    itemCost /= 2;
+
+                // új maxértéket találtnk
+                if (itemCost > maxCost)
+                {
+                    // maxindex, maxCost frissítése
+                    maxIndex = i;
+                    maxCost = itemCost;
+                }
+            }
+            return this.TrainingCosts[maxIndex];
+        }
+
+        // 1.12. Adott feltételnek megfelelő költések indexe
+        public int[] CostsIndexes(Predicate<TrainingCost> pre)
+        {
+            // megszámoljuk hány ilyen feltételnek eleget tevő elem van
+            // ehhez felhasználjuk a már megírt metódusunkat
+            int count = this.CountCost(pre);
+
+            if (count == 0) throw new ZeroLengthArrayException();
+
+            // indexeket tároló visszatérési tömb
+            int[] result = new int[count];
+            // melyik index-re fogjuk tenni a következő talált elemet?
+            int db = 0;
+
+            // végig megyünk i-vel indexelve a tömbön
+            for (int i = 0; i < this.TrainingCosts.Length; i++)
+            {
+                // ha adott tulajdonságú az i. elem
+                if (pre(this.TrainingCosts[i]))
+                    // elmentjük és db++
+                    result[db++] = i;
+            }
+
+            return result;
+        }
+
+        // 1.13. Minden adat ami egy feltételnek megfelel -> objektumtömb
+        public TrainingCost[] CostsArray(Predicate<TrainingCost> pre)
+        {
+            // használjuk fel az 1.12-t
+            int[] indexes = this.CostsIndexes(pre);
+
+            // ha exception van, az a felsőbb szintű hívóra megy tovább
+
+            // eredménytömb
+            TrainingCost[] result = new TrainingCost[indexes.Length];
+
+            // melyik indexet tárolom?
+            int db = 0;
+
+            // végig megyek az indexeken
+            for (int i = 0; i < indexes.Length; i++)
+            {
+                // elmentem az eredménybe
+                // az i. által az indexes tömbben szereplő
+                // indexet adó TC-t. :)
+                result[db++] = this.TrainingCosts[indexes[i]];
+            }
+            return result;
+        }
+
+        // 1.14. Tömb átalakítása -> feltételek előre
+        // jegyzet - Szétválogatás programozás tétel az eredeti tömbben 
+        public void PartitionSort(Predicate<TrainingCost> pre)
+        {
+            int bal = 1 - 1; // -1 indexelés miatt
+            int jobb = this.TrainingCosts.Length - 1; // -1 indexelés miatt
+            TrainingCost seged = this.TrainingCosts[0];
+            while (bal < jobb)
+            {
+                while ((bal < jobb) &&
+                    (!(pre(this.TrainingCosts[jobb]))))
+                    jobb--;
+
+                if (bal<jobb)
+                {
+                    this.TrainingCosts[bal++] =this.TrainingCosts[jobb];
+
+                    while ((bal < jobb) && (pre(this.TrainingCosts[bal])))
+                        bal++;
+
+                    if (bal < jobb)
+                        this.TrainingCosts[jobb--] = this.TrainingCosts[bal];
+                }
+            }
+            this.TrainingCosts[bal] = seged;
+        }
+    }
 }

@@ -180,6 +180,60 @@ namespace L08_TrainingCosts_Tests
 
         }
 
-    }
+        [TestCase("01")]
+        public void BiggestCostAlternativeTest(string month)
+        {
+            MonthlyCosts mc = MonthlyCosts.LoadFrom(@$"..\..\..\csv_files\2024_{month}.csv");
 
+            Assert.That(mc.BiggestCostAlternative(), Is.EqualTo(mc.TrainingCosts[5]));
+        }
+
+        [TestCase(TrainingType.Cycling, new int[] { 0, 1, 2 })]
+        [TestCase(TrainingType.Swimming, new int[] { 3, 4, 5 })]
+        public void CostsIndexesTest(TrainingType tp, int[] exp)
+        {
+            MonthlyCosts mc = MonthlyCosts.LoadFrom(@$"..\..\..\csv_files\2024_01.csv");
+
+            Assert.That(mc.CostsIndexes(x => x.Type == tp), Is.EqualTo(exp));
+        }
+
+        [TestCase(TrainingType.Cycling, new int[] { 0, 1, 2 })]
+        [TestCase(TrainingType.Swimming, new int[] { 3, 4, 5 })]
+        public void CostsArray(TrainingType tc, int[] exp)
+        {
+            MonthlyCosts mc = MonthlyCosts.LoadFrom(@$"..\..\..\csv_files\2024_01.csv");
+
+            // várt tömb hossza
+            TrainingCost[] expected = new TrainingCost[exp.Length];
+            // feltöltjük az indexelt elemekkel
+            for (int i = 0; i < exp.Length; i++)
+            {
+                expected[i] = mc.TrainingCosts[exp[i]];
+            }
+            // megegyezik-e
+            Assert.That(mc.CostsArray(x => x.Type == tc), Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void PartitionSortTest()
+        {
+            MonthlyCosts mc = MonthlyCosts.LoadFrom(@$"..\..\..\csv_files\2024_01.csv");
+
+            // a feltétel, ami szerint rendezünk
+            Predicate<TrainingCost> pre = x => x.Cost > 10000;
+            
+            // rendezés
+            mc.PartitionSort(pre);
+
+            // elemek sorrendje, a fenti szerint az első 3 helyre
+            // olyan fog kerülni ami teljesíti a feltételt
+            Assert.That(pre(mc.TrainingCosts[0]), Is.True);
+            Assert.That(pre(mc.TrainingCosts[1]), Is.True);
+            Assert.That(pre(mc.TrainingCosts[2]), Is.True);
+
+            Assert.That(pre(mc.TrainingCosts[3]), Is.False);
+            Assert.That(pre(mc.TrainingCosts[4]), Is.False);
+            Assert.That(pre(mc.TrainingCosts[5]), Is.False);
+        }
+    }
 }
