@@ -7,25 +7,29 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L01-OOP", "L01-OOP\L01-OOP.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L02-Oroklodes", "L02-Oroklodes\L02-Oroklodes.csproj", "{1897BAA0-C27F-4177-BF23-DCEAB3911826}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L03-MemeCat", "L03-MemeCat\L03-MemeCat.csproj", "{EF1E9112-70B6-456C-B6E5-38C2F73C926F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L03-MemeCat", "L03-MemeCat\L03-MemeCat.csproj", "{EF1E9112-70B6-456C-B6E5-38C2F73C926F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L03-Interface", "L03-Interface\L03-Interface.csproj", "{63F71280-A5E6-4488-B709-9A3C1097C3A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L04-NUnit", "L04-PrimeTool\L04-NUnit.csproj", "{2DB4AF07-FBEA-444E-A54F-CBB32BB71659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L04-NUnit", "L04-PrimeTool\L04-NUnit.csproj", "{2DB4AF07-FBEA-444E-A54F-CBB32BB71659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L04-NUnit_Tests", "L04-NUnit_Tests\L04-NUnit_Tests.csproj", "{A341CA0D-35FF-4D12-BC6D-4AC7E1FD1088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L04-NUnit_Tests", "L04-NUnit_Tests\L04-NUnit_Tests.csproj", "{A341CA0D-35FF-4D12-BC6D-4AC7E1FD1088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L05-Kivetelek", "L05-Kivetelek\L05-Kivetelek.csproj", "{E4E491F3-A75A-4C78-BAB1-80F1FBA3B2F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L05-Kivetelek", "L05-Kivetelek\L05-Kivetelek.csproj", "{E4E491F3-A75A-4C78-BAB1-80F1FBA3B2F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L05-Kivetelek_Tests", "L05-Kivetelek_Tests\L05-Kivetelek_Tests.csproj", "{92572E42-9880-4EA4-B1D5-9A514893C26B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L05-Kivetelek_Tests", "L05-Kivetelek_Tests\L05-Kivetelek_Tests.csproj", "{92572E42-9880-4EA4-B1D5-9A514893C26B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MintaZH01", "MintaZH01\MintaZH01.csproj", "{CD288485-5810-47A5-8E21-3FCC8DDC0C53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MintaZH01", "MintaZH01\MintaZH01.csproj", "{CD288485-5810-47A5-8E21-3FCC8DDC0C53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MintaZH01_Tests", "MintaZH01_Tests\MintaZH01_Tests.csproj", "{36CCBEF9-718D-4C31-90FF-0A32E52EE50E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MintaZH01_Tests", "MintaZH01_Tests\MintaZH01_Tests.csproj", "{36CCBEF9-718D-4C31-90FF-0A32E52EE50E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L08-TrainingCosts", "L08-TrainingCosts\L08-TrainingCosts.csproj", "{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L08-TrainingCosts", "L08-TrainingCosts\L08-TrainingCosts.csproj", "{65B8DE3B-AED9-430E-9F52-A98721E1C0FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L08-TrainingCosts_Tests", "L08-TrainingCosts_Tests\L08-TrainingCosts_Tests.csproj", "{57257CF3-15DE-4A8F-A70D-F06771039B71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "L08-TrainingCosts_Tests", "L08-TrainingCosts_Tests\L08-TrainingCosts_Tests.csproj", "{57257CF3-15DE-4A8F-A70D-F06771039B71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L09-RendezesKereses", "L09-RendezesKereses\L09-RendezesKereses.csproj", "{81027435-5EEE-4538-BC2D-D19DB3C291B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "L09-RendezesKereses_Tests", "L09-RendezesKereses_Tests\L09-RendezesKereses_Tests.csproj", "{F2FE37A5-9D87-4EDE-B58C-64987F9DB684}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,14 @@ Global
 		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57257CF3-15DE-4A8F-A70D-F06771039B71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81027435-5EEE-4538-BC2D-D19DB3C291B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81027435-5EEE-4538-BC2D-D19DB3C291B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81027435-5EEE-4538-BC2D-D19DB3C291B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81027435-5EEE-4538-BC2D-D19DB3C291B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2FE37A5-9D87-4EDE-B58C-64987F9DB684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2FE37A5-9D87-4EDE-B58C-64987F9DB684}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2FE37A5-9D87-4EDE-B58C-64987F9DB684}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2FE37A5-9D87-4EDE-B58C-64987F9DB684}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
