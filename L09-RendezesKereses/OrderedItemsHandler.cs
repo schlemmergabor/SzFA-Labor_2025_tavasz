@@ -41,9 +41,9 @@ namespace L09_RendezesKereses
         private void SetMethod(bool isAscending = true)
         {
             if (isAscending)
-                Method = (a, b) => a.CompareTo(b) <= 0; // növekvő
+                Method = (a, b) => a.CompareTo(b) < 0; // növekvő
             else
-                Method = (a, b) => a.CompareTo(b) >= 0; // csökkenő
+                Method = (a, b) => a.CompareTo(b) > 0; // csökkenő
         }
 
         // 1. feladat - rendezett-E a tömb?
@@ -52,7 +52,7 @@ namespace L09_RendezesKereses
         public bool IsOrdered(bool isAscending = true)
         {
             // beállítjuk a delegáltat
-            SetMethod(isAscending);
+            this.SetMethod(isAscending);
 
             int n = x.Length - 1; // indexelés miatt -1
 
@@ -70,7 +70,7 @@ namespace L09_RendezesKereses
             bool isAscending = true)
         {
             // beállítjuk a delegáltat
-            SetMethod(isAscending);
+            this.SetMethod(isAscending);
 
             // eldöntjük, hogy melyik algoritmussal
             switch (sortingMethod)
@@ -159,10 +159,87 @@ namespace L09_RendezesKereses
                 x[j + 1] = temp;
             }
         }
+
         // Bináris keresés - iteratív (ciklussal) módon
-        public bool BinarySearch(IComparable value)
+        // ha benne van adjuk vissza az elemet
+        public IComparable? BinarySearch(IComparable value, bool isAscending = true)
         {
-            return true;
+            // ha nem rendezett
+            if (!this.IsOrdered(isAscending))
+                throw new NotOrderedItemsException(this.x);
+
+            // beállítjuk a delegáltat, hogy mind növekvő
+            // mind csökkenő módban működjön
+            this.SetMethod(isAscending);
+
+            int bal = 1 - 1; // -1 index miatt
+            int jobb = this.x.Length - 1; // -1 index miatt
+
+            int center = (bal + jobb) / 2;
+
+            // Az algoritmus az alábbi kód lenne:
+            // while ((bal <= jobb) && (!this.x[center].Equals(value)))
+
+            // de nem ezt fogom használni. Mert így a Name és a Numbernek is
+            // meg kell egyezni, azaz amit keresek annak is tudom a számát...
+            // inkább vizsgáljuk csak a Név egyezőséget
+            // Equalsban Name és Number -nek is egyeznie kellett...
+            while ((bal <= jobb) && (!((this.x[center] as PhoneBookItem)?.Name == (value as string))))
+            {
+                if (this.Method(value, this.x[center]))
+                    jobb = center - 1;
+                else
+                    bal = center + 1;
+                center = (bal + jobb) / 2;
+            }
+
+            bool van = bal <= jobb;
+
+            // ha benne van
+            if (van) return this.x[center];
+
+            // nincs benne
+            return null;
+        }
+
+        // Bináris Keresés - Rekurzív (önnmaga hívásával) módon
+        public IComparable? BinarySearchRecursive(IComparable value, bool isAscending = true)
+        {
+            // ha nem rendezett
+            if (!IsOrdered()) throw new NotOrderedItemsException(this.x);
+
+            // beállítjuk a delegáltat, hogy mind növekvő
+            // mind csökkenő módban működjön
+            this.SetMethod(isAscending);
+
+            // itt indítjuk a keresést
+            // private láthatóságú "belső" metódust hívok meg
+            return BinarySearchRecursive(0, x.Length - 1, value);
+        }
+
+        // Bináris Keresés - privát metódus
+        // itt adom a meg a két indexet is!
+        private IComparable? BinarySearchRecursive(int bal, int jobb, IComparable value)
+        {
+            // Nincs benne az elem
+            if (bal > jobb) return null;
+
+            int center = (bal + jobb) / 2;
+
+            // megtaláltuk -> őt kerestük
+            // if (this.x[center].Equals(value)) return center;
+            // de
+            // inkább ezt a kódot használom, mert így csak a Name-et kell keresni
+            // fenti esetében pedig a Name, Number páros-ra keresnék 
+            // aminek nincs sok értelme...
+            if ((this.x[center] as PhoneBookItem)?.Name == (value as string)) return this.x[center];
+
+            // kisebb felében van -> 
+            if (this.Method(this.x[center], value))
+                return BinarySearchRecursive(bal, center - 1, value);
+
+            // nagyobb felében van -> ...
+            return BinarySearchRecursive(center + 1, jobb, value);
         }
     }
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using L09_RendezesKereses;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace L09_RendezesKereses_Tests
 {
@@ -52,7 +54,7 @@ namespace L09_RendezesKereses_Tests
                 new PhoneBookItem() { Name = "Alfa", Number = "egy" },
                 new PhoneBookItem() { Name = "Beta", Number = "ketto" }
             };
-            
+
             // ide teszem, mert majd rendezve ilyen sorrendben várom
             PhoneBookItem[] orderedArray = new PhoneBookItem[]
             {
@@ -74,5 +76,47 @@ namespace L09_RendezesKereses_Tests
             // azért nem itt van az orderedArray, mert ott is lefut a Sort
             Assert.That(oih.X, Is.EqualTo(orderedArray));
         }
+
+        [Test]
+        public void BinarySearchOKTest()
+
+        {
+            PhoneBookItem[] tomb = new PhoneBookItem[] {
+                
+                new PhoneBookItem() { Name = "Alfa", Number = "egy" },
+                new PhoneBookItem() { Name = "Beta", Number = "ketto" },
+                new PhoneBookItem() { Name = "Teta", Number = "harom" }
+            };
+
+            OrderedItemsHandler oih = new OrderedItemsHandler(tomb);
+
+            // módosítottam az algoritmuson, hogy string-re is megtalálja
+            IComparable? pbi = oih.BinarySearch("Beta");
+            // szintén módosítva, hogy string-et találjon meg
+            IComparable? pbi2 = oih.BinarySearchRecursive("Beta");
+
+            Assert.That(pbi, Is.EqualTo(tomb[1]));
+            Assert.That(pbi2, Is.EqualTo(tomb[1]));
+        }
+
+        [Test]
+        public void BinarySearchNotOKTest()
+
+        {
+            PhoneBookItem[] tomb = new PhoneBookItem[] {
+
+                new PhoneBookItem() { Name = "Alfa", Number = "egy" },
+                new PhoneBookItem() { Name = "Beta", Number = "ketto" },
+                new PhoneBookItem() { Name = "Teta", Number = "harom" }
+            };
+
+            OrderedItemsHandler oih = new OrderedItemsHandler(tomb);
+
+            IComparable? pbi = oih.BinarySearch(new PhoneBookItem() { Name = "Xavier" });
+            IComparable? pbi2 = oih.BinarySearchRecursive(new PhoneBookItem() { Name = "Xavier" });
+
+            Assert.That(pbi, Is.EqualTo(null));
+        }
+
     }
 }
