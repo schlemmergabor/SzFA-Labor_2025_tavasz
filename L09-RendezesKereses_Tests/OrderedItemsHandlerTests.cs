@@ -76,13 +76,25 @@ namespace L09_RendezesKereses_Tests
             // azért nem itt van az orderedArray, mert ott is lefut a Sort
             Assert.That(oih.X, Is.EqualTo(orderedArray));
         }
+        [Test]
+        public void BinarySearchException()
+        {
+            PhoneBookItem[] tomb = new PhoneBookItem[] {
+                new PhoneBookItem() {Name = "Xavier", Number="negy"},
+                new PhoneBookItem() { Name = "Alfa", Number = "egy" },
+                new PhoneBookItem() { Name = "Beta", Number = "ketto" },
+                new PhoneBookItem() { Name = "Teta", Number = "harom" }
+            };
+            OrderedItemsHandler oih = new OrderedItemsHandler(tomb);
 
+            Assert.Throws<NotOrderedItemsException>(() => oih.BinarySearch(tomb[1]));
+        }
         [Test]
         public void BinarySearchOKTest()
 
         {
             PhoneBookItem[] tomb = new PhoneBookItem[] {
-                
+
                 new PhoneBookItem() { Name = "Alfa", Number = "egy" },
                 new PhoneBookItem() { Name = "Beta", Number = "ketto" },
                 new PhoneBookItem() { Name = "Teta", Number = "harom" }
@@ -90,13 +102,14 @@ namespace L09_RendezesKereses_Tests
 
             OrderedItemsHandler oih = new OrderedItemsHandler(tomb);
 
-            // módosítottam az algoritmuson, hogy string-re is megtalálja
-            IComparable? pbi = oih.BinarySearch("Beta");
-            // szintén módosítva, hogy string-et találjon meg
+            //módosítottam az algoritmuson, hogy string-re is megtalálja
+            IComparable ? pbi = oih.BinarySearch("Beta");
+            //szintén módosítva, hogy string-et találjon meg
             IComparable? pbi2 = oih.BinarySearchRecursive("Beta");
-
+            
             Assert.That(pbi, Is.EqualTo(tomb[1]));
             Assert.That(pbi2, Is.EqualTo(tomb[1]));
+
         }
 
         [Test]
@@ -117,6 +130,23 @@ namespace L09_RendezesKereses_Tests
 
             Assert.That(pbi, Is.EqualTo(null));
         }
+        [Test]
+        public void FindFirstNotLessTest()
+        {
+            PhoneBookItem[] tomb = new PhoneBookItem[] {
 
+                new PhoneBookItem() { Name = "Alfa", Number = "egy" },
+                new PhoneBookItem() { Name = "Beta", Number = "ketto" },
+                new PhoneBookItem() { Name = "Teta", Number = "harom" }
+            };
+
+            OrderedItemsHandler oih = new OrderedItemsHandler(tomb);
+
+            Assert.That(oih.FindFirstNotLess(new PhoneBookItem() { Name = "Alfa" }), Is.EqualTo(1));
+
+            Assert.That(oih.FindFirstNotLess(new PhoneBookItem() { Name = "Beta" }), Is.EqualTo(2));
+
+            Assert.That(oih.FindFirstNotLess(new PhoneBookItem() { Name = "Teta", Number = "ketto" }), Is.EqualTo(-1));
+        }
     }
 }

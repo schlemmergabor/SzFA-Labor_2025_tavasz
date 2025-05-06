@@ -92,7 +92,7 @@ namespace L09_RendezesKereses
         }
 
         // tömb megfordítása
-        private void Reverse()
+        public void Reverse()
         {
             // helyben cseréljük, segédtömb nélkül
             // for (int i = 0; i < x.Length / 2; i++)
@@ -190,6 +190,7 @@ namespace L09_RendezesKereses
                     jobb = center - 1;
                 else
                     bal = center + 1;
+
                 center = (bal + jobb) / 2;
             }
 
@@ -206,7 +207,7 @@ namespace L09_RendezesKereses
         public IComparable? BinarySearchRecursive(IComparable value, bool isAscending = true)
         {
             // ha nem rendezett
-            if (!IsOrdered()) throw new NotOrderedItemsException(this.x);
+            if (!IsOrdered(isAscending)) throw new NotOrderedItemsException(this.x);
 
             // beállítjuk a delegáltat, hogy mind növekvő
             // mind csökkenő módban működjön
@@ -240,6 +241,36 @@ namespace L09_RendezesKereses
 
             // nagyobb felében van -> ...
             return BinarySearchRecursive(center + 1, jobb, value);
+        }
+
+        // növekvően rendezettnél nem kisebb index
+        // első olyat ami a value-nál nagyobb -> index
+        public int FindFirstNotLess(IComparable value, bool isAscending = true)
+        {
+            this.SetMethod(isAscending);
+            // ha nem rendezett
+            if (!IsOrdered(isAscending)) throw new NotOrderedItemsException(this.x);
+
+            int bal = 0;
+            int jobb = this.X.Length - 1;
+            int result = -1; // Ha nincs ilyen elem
+
+            while (bal <= jobb)
+            {
+                int center = bal + (jobb - bal) / 2;
+                
+                if (this.Method(value, this.x[center]))
+                {
+                    result = center;
+                    jobb = center - 1; 
+                }
+                else
+                {
+                    bal = center + 1;
+                }
+            }
+
+            return result;
         }
     }
 }
